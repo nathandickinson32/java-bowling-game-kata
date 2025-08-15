@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 
 public class BowlingGameTest {
+
     BowlingGame game = new BowlingGame();
 
     @Test
