@@ -40,7 +40,6 @@ public class BG6Test {
         game.roll(4);
         assertEquals(18, game.score());
     }
-
     @Test
     public void testStrike() {
         game.roll(10);

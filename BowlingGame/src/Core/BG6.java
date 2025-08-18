@@ -16,16 +16,16 @@ public class BG6 {
         int frame = 0;
 
         for (; i < rolls.size() - 2 && frame < 9; i += 2) {
-            score += scoreFrame(i);
+            score += getFrameScore(i);
 
-            if (isStrikeOrSpare(i))
+            if (isSpareOrStrike(i))
                 score += rolls.get(i + 2);
 
             i += strikeFrameAdjustment(i);
             frame++;
         }
 
-        score += scoreRestRolls(i, frame);
+        score += scoreLastRolls(i, frame);
         return score;
     }
 
@@ -39,21 +39,22 @@ public class BG6 {
         return rolls.get(i) == 10;
     }
 
-    private int scoreRestRolls(int i, int frame) {
+    private int scoreLastRolls(int i, int frame) {
         int score = 0;
         for (; i < rolls.size(); i++) {
-            if (isStrike(i) && frame < 9 && i < rolls.size() - 1)
+            if (isStrike(i) && frame < 9 && i < rolls.size() -1)
                 score += rolls.get(i + 1);
             score += rolls.get(i);
         }
         return score;
     }
 
-    private boolean isStrikeOrSpare(int i) {
-        return scoreFrame(i) >= 10;
+    private boolean isSpareOrStrike(int i) {
+        return getFrameScore(i) >= 10;
     }
 
-    private int scoreFrame(int i) {
+    private int getFrameScore(int i) {
         return rolls.get(i) + rolls.get(i + 1);
     }
+
 }
