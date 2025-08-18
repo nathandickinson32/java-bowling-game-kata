@@ -12,7 +12,6 @@ public class BowlingGame5 {
 
     private ArrayList<Integer> rolls = new ArrayList<>();
 
-
     public void roll(int pins) {
         rolls.add(pins);
     }
@@ -32,7 +31,7 @@ public class BowlingGame5 {
             frame++;
         }
 
-        score += scoreLastFrames(i, frame);
+        score += scoreRemainingFrame(i, frame);
         return score;
     }
 
@@ -46,10 +45,10 @@ public class BowlingGame5 {
         return rolls.get(i) == 10;
     }
 
-    private int scoreLastFrames(int i, int frame) {
+    private int scoreRemainingFrame(int i, int frame) {
         int score = 0;
         for (; i < rolls.size(); i++) {
-            if (isStrike(i) && frame < 9 && i < rolls.size() - 1)
+            if (frame < 9 && i < rolls.size() -1 && isStrike(i))
                 score += rolls.get(i + 1);
             score += rolls.get(i);
         }
@@ -63,7 +62,6 @@ public class BowlingGame5 {
     private int scoreFrame(int i) {
         return rolls.get(i) + rolls.get(i + 1);
     }
-
 
 //
 //    public int score() {

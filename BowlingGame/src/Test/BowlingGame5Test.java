@@ -46,7 +46,7 @@ public class BowlingGame5Test {
 
     @Test
     public void testAllOnes() {
-        rollMany(20,1);
+        rollMany(20, 1);
         assertEquals(20, game.score());
     }
 
@@ -67,17 +67,16 @@ public class BowlingGame5Test {
     }
 
     @Test
-    public void testPerfectGame(){
+    public void testPerfectGame() {
         rollMany(12, 10);
         assertEquals(300, game.score());
     }
 
     @Test
-    public void testAlmostPerfectGame(){
+    public void testAlmostPerfectGame() {
         rollMany(9, 10);
         assertEquals(240, game.score());
     }
-
 
 //    @Test
 //    public void testOnePin() {
