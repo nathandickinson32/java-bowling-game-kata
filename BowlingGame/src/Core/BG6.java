@@ -25,7 +25,8 @@ public class BG6 {
             frame++;
         }
 
-        score += scoreLastRolls(i, frame);
+
+        score += scoreLastFrames(i, frame);
         return score;
     }
 
@@ -39,10 +40,10 @@ public class BG6 {
         return rolls.get(i) == 10;
     }
 
-    private int scoreLastRolls(int i, int frame) {
+    private int scoreLastFrames(int i, int frame) {
         int score = 0;
         for (; i < rolls.size(); i++) {
-            if (isStrike(i) && frame < 9 && i < rolls.size() -1)
+            if(isStrike(i) && i < rolls.size() -1 && frame < 9)
                 score += rolls.get(i + 1);
             score += rolls.get(i);
         }
@@ -56,5 +57,6 @@ public class BG6 {
     private int getFrameScore(int i) {
         return rolls.get(i) + rolls.get(i + 1);
     }
+
 
 }

@@ -40,6 +40,7 @@ public class BG6Test {
         game.roll(4);
         assertEquals(18, game.score());
     }
+
     @Test
     public void testStrike() {
         game.roll(10);
@@ -59,4 +60,5 @@ public class BG6Test {
         rollMany(9, 10);
         assertEquals(240, game.score());
     }
+
 }
