@@ -9,69 +9,57 @@ import static org.junit.Assert.assertEquals;
 
 public class BowlingGameTest {
 
-    BowlingGame game = new BowlingGame();
+    private BowlingGame game = new BowlingGame();
+
+    private void rollMany(int rolls, int pins) {
+        for (int i = 0; i < rolls; i++) {
+            game.roll(pins);
+        }
+    }
 
     @Test
-    public void testEmptyGame() {
-        game.rolls = new ArrayList<Integer>();
+    public void testGutterGame() {
+        rollMany(20, 0);
         assertEquals(0, game.score());
     }
 
     @Test
     public void testOnePin() {
-        game.rolls = new ArrayList<Integer>();
-        game.rolls.add(1);
+        game.roll(1);
         assertEquals(1, game.score());
     }
 
     @Test
-    public void testTwoPins() {
-        game.rolls = new ArrayList<Integer>();
-        game.rolls.add(2);
-        assertEquals(2, game.score());
-    }
-
-    @Test
-    public void testOneFrame() {
-        game.rolls = new ArrayList<Integer>();
-        game.rolls.add(2);
-        game.rolls.add(2);
-        assertEquals(4, game.score());
+    public void testAllOnes() {
+        rollMany(20, 1);
+        assertEquals(20, game.score());
     }
 
     @Test
     public void testSpare() {
-        game.rolls = new ArrayList<Integer>();
-        game.rolls.add(2);
-        game.rolls.add(8);
-        game.rolls.add(3);
-        assertEquals(16, game.score());
+        game.roll(5);
+        game.roll(5);
+        game.roll(4);
+        assertEquals(18, game.score());
     }
 
     @Test
     public void testStrike() {
-        game.rolls = new ArrayList<Integer>();
-        game.rolls.add(10);
-        game.rolls.add(5);
-        game.rolls.add(3);
-        assertEquals(26, game.score());
+        game.roll(10);
+        game.roll(5);
+        game.roll(4);
+        assertEquals(28, game.score());
     }
 
     @Test
     public void testPerfectGame() {
-        game.rolls = new ArrayList<Integer>();
-        for (int i = 0; i < 12; i++) {
-            game.rolls.add(10);
-        }
+        rollMany(12, 10);
         assertEquals(300, game.score());
     }
 
     @Test
     public void testAlmostPerfectGame() {
-        game.rolls = new ArrayList<Integer>();
-        for (int i = 0; i < 9; i++) {
-            game.rolls.add(10);
-        }
+        rollMany(9, 10);
         assertEquals(240, game.score());
     }
 }
