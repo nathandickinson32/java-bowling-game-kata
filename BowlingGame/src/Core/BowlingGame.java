@@ -24,6 +24,7 @@ public class BowlingGame {
             i += strikeFrameAdjustment(i);
             frame++;
         }
+
         score += scoreLastFrames(i, frame);
         return score;
     }
@@ -41,7 +42,7 @@ public class BowlingGame {
     private int scoreLastFrames(int i, int frame) {
         int score = 0;
         for (; i < rolls.size(); i++) {
-            if(isStrike(i) && frame < 9 && i < rolls.size() - 1)
+            if (isStrike(i) && frame < 9 && i < rolls.size() - 1)
                 score += rolls.get(i + 1);
             score += rolls.get(i);
         }
