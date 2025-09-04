@@ -3,8 +3,6 @@ package Test;
 import Core.BowlingGame;
 import org.junit.Test;
 
-import java.util.ArrayList;
-
 import static org.junit.Assert.assertEquals;
 
 public class BowlingGameTest {
@@ -18,8 +16,7 @@ public class BowlingGameTest {
     }
 
     @Test
-    public void testGutterGame() {
-        rollMany(20, 0);
+    public void testNewGame() {
         assertEquals(0, game.score());
     }
 

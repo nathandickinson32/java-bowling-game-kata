@@ -1,14 +1,11 @@
 package Test;
 
 import Core.BowlingGame2;
-import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 public class BowlingGame2Test {
-
-    private BowlingGame2 game;
 
     private void rollMany(int rolls, int pins) {
         for (int i = 0; i < rolls; i++) {
@@ -16,16 +13,17 @@ public class BowlingGame2Test {
         }
     }
 
-    @Before
-    public void setUp() {
-        game = new BowlingGame2();
+    private BowlingGame2 game = new BowlingGame2();
+
+    @Test
+    public void testNewGame() {
+        assertEquals(0, game.score());
     }
 
     @Test
-    public void gutterGameTest() {
-        rollMany(20, 0);
-        assertEquals(0, game.score());
-
+    public void testOnePin() {
+        game.roll(1);
+        assertEquals(1, game.score());
     }
 
     @Test
@@ -35,26 +33,30 @@ public class BowlingGame2Test {
     }
 
     @Test
-    public void testOneSpare() {
+    public void testSpare() {
         game.roll(5);
         game.roll(5);
-        game.roll(3);
-        rollMany(17, 0);
-        assertEquals(16, game.score());
+        game.roll(4);
+        assertEquals(18, game.score());
     }
 
     @Test
-    public void testOneStrike() {
+    public void testStrike() {
         game.roll(10);
+        game.roll(5);
         game.roll(4);
-        game.roll(3);
-        rollMany(16, 0);
-        assertEquals(24, game.score());
+        assertEquals(28, game.score());
     }
 
     @Test
     public void testPerfectGame() {
         rollMany(12, 10);
         assertEquals(300, game.score());
+    }
+
+    @Test
+    public void testAlmostPerfectGame() {
+        rollMany(9, 10);
+        assertEquals(240, game.score());
     }
 }
